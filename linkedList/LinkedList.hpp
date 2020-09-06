@@ -1,6 +1,6 @@
 /**
-*	@author 
-*	@date 
+*	@author Edwin Recinos	 
+*	@date   09/06/2020
 *	@file LinkedList.hpp
 *	@brief Implementation file for templated LinkedList class
 */
