@@ -45,13 +45,14 @@ bool LinkedList<T>::search(T value) const
 		Fix this method
 	*/
 	//getValue from node.hpp
-	int size=m_size;
-	while(isFound == 0 && (size<m_size)){
+	for(int i=1; i<=m_size; i= i+1){
 		if(temp->getValue() == value){
 			isFound = 1;
 		}
-		temp=temp->getNext();
-		size++;		
+		else{
+			temp=temp->getNext();
+		
+		}		
 	}
 
 	return(isFound);
@@ -116,28 +117,35 @@ bool LinkedList<T>::removeBack()
 		Fix this method
 	*/
 
-	if(m_size==0){
-		return(isRemoved);
-	}
-	if(m_size==1){
-
-		delete m_front;
-		m_front=nullptr;
-		m_size--;
-		isRemoved=true;
+	if(isEmpty()){
 		return(isRemoved);
 	}
 	else{
-		secondintoLast=m_front;
-		for(int i=1; i<m_size-1; i++){
-			secondintoLast=secondintoLast->getNext();
+		if(m_front->getNext()==nullptr){
+
+			delete m_front;
+			m_size--;
+			isRemoved=true;
+			
 		}
-		lastNode=secondintoLast->getNext();
+		lastNode = m_front;
+		secondintoLast=m_front;
+		while(lastNode->getNext() != nullptr){
+			lastNode=lastNode->getNext();
+		}
+		while(secondintoLast->getNext()!= lastNode){
+			
+			secondintoLast = secondintoLast->getNext();
+		}
+		
+		delete lastNode->getNext();
+
 		secondintoLast->setNext(nullptr);
-		delete lastNode;
 		m_size--;
 		isRemoved=true;	
-		return(isRemoved);
+		
+	}
+	return(isRemoved);
 }	
 
 template <typename T>
